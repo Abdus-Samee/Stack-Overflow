@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Abdus Samee">
+    <title>Stack Overflow</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+    @media only screen and (max-width: 720px) {
+     .headline{
+      font-size: 8vw;
+     }
+    }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h3 id='logo'>Stack Overflow</h3>
+      </nav>
+      <section>
+        <div class="hero">
+          <img class="heap" src="image/large.png" alt="">
+          <h1 class="headline">Ask & Ans</h1>
+        </div>
+      </section>
+    </header>
+
+    <div class="slider"></div>
+
+    <div class="cent">
+      <a class="btn btn-warning" href="/login">Log In</a>
+      <a class="btn btn-success" href="/register">Register</a>
+      <a class="btn btn-primary" href="/home">Take a tour</a>
+    </div>
+
+    <!-- <h1 style="opacity:0%;">Heap Overflow</h1>
+
+    <div class="row">
+      <div class="aa cent ml-1 shadow-lg col">
+        <h5>Ask questions</h5>
+      </div>
+
+      <div class="cent ml-1 shadow-lg col">
+        <h5>Answer too</h5>
+      </div>
+
+      <div class="cent ml-1 shadow-lg col">
+        <h5>Keep logged in</h5>
+      </div>
+
+      <div class="cent ml-1 shadow-lg col">
+        <h5>Make an account</h5>
+      </div>
+    </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js" integrity="sha512-pCPP9sfLW9T7EZiw725jUl+ux032sjGhFE+ZAx00C1iO55ZmZJWpfNGbDf2ZF5b0UqxRqSW548PbZEWmH+S7pA==" crossorigin="anonymous"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script>
+      const hero = $('.hero');
+      const slider = $('.slider');
+      const logo = $('#logo');
+      const headline = $('.headline');
+
+      gsap.fromTo(hero, 1, {height: '0%'}, {height: '80%', ease: Power2.easeInOut})
+      gsap.fromTo(hero, 1.2, {width: '100%'}, {width: '80%', delay: 1.2, ease: Power2.easeInOut})
+      gsap.fromTo(slider, 1.2, {x: '-100%'}, {x: '0%', delay: 1.3, ease: Power2.easeInOut})
+      gsap.fromTo(logo, 1, {opacity: 0, x: 30}, {opacity:1, x:5, delay: 0.5})
+    </script>
+    <!-- <script>
+      $('h1').fadeTo(1000, 1);
+      $('.aa').animate({
+        marginLeft: '+=90'
+      }, 6000);
+    </script> -->
+  </body>
+</html>

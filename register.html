@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Abdus Samee">
+  <title>Register in Stack Overflow</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{
+      background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-center">
+    <div class="container">
+      <form class="form-signin" action="/register" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Stack Overflow - Register</h1>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Your username" required autofocus autocomplete="off">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password" type="text" id="inputPassword" class="form-control" placeholder="Your password" required autocomplete="off">
+        <button class="btn btn-success btn-block" type="submit">Register</button>
+        <p class="mt-5 mb-3 text-muted">&copy; Abdus Samee</p>
+      </form>
+    </div>
+
+    <!-- <div class="card" style="width: 18rem;margin: 0 auto;">
+      <div class="card-body">
+        <a class="btn btn-block btn-danger" href="/auth/google" role="button">
+          <i class="fab fa-google"></i>
+          Sign Up with Google
+        </a>
+      </div>
+    </div> -->
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
