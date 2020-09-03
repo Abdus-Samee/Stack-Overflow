@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Abdus Samee">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/posts/post.css">
+</head>
+
+<body class="cent">
+  <div>
+    <% if(logged){ %>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/logout">Logout</a>
+      </li>
+    </ul>
+    <% }else{ %>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/login">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/register">Register</a>
+      </li>
+    </ul>
+    <% } %>
+  </div>
+
+  <div class="">
+    <div class="row">
+      <div class="col-sm-12 col-md" style="background-color:#776d8a;">
+        <div class="first First" style="margin-top:10vh;">
+          <h3 class="display-4">Stack</h3>
+          <h3 class="display-4">Overflow</h3>
+          <h5 class="display-5" style="margin-top:20%;">Have a question?</h5>
+          <a class="btn btn-primary" style="margin-bottom:5%;" href="/ask">Ask Here</a>
+          <form style="margin:25% 0;" action="/search" method="post">
+            <input type="text" name="findQuestion" placeholder="Search for a question">
+            <input type="submit" value="Search" style="background-color:#fbd46d;border:none;">
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" style="min-height:100vh;background-color:#eeeeee;">
+        <h1 style="margin-top:10vh;"><%= title %></h1>
+        <% tagList.forEach(function(tag){ %>
+        <p class="lead" style="margin-left:5px;display:inline;background-color:#e8ded2"> <%= tag %> </p>
+        <% }); %>
+        <hr>
+        <div class="content">
+          <h5><%= body %></h5>
+        </div>
+        <hr>
+        <% ansList.forEach(function(ans){ %>
+        <div class="newAns">
+          <h6><%= ans.answer %></h6>
+          <small style="color:#e97171;">Written by - <%= ans.author %></small>
+        </div>
+        <% }); %>
+        <% if(logged){ %>
+        <div class="answer">
+          <h6>Write an answer...</h6>
+          <form class="mb-4" action="/posts/<%= title %>" method="post">
+            <textarea name="answerBody" rows="10" cols="100"></textarea>
+            <input type="hidden" name="answerTitle" value="<%= title %>">
+            <input class="btn btn-primary" type="submit" value="Post Your Answer">
+          </form>
+        </div>
+        <% } %>
+      </div>
+      <div class="col-sm-12 col-md" style="background-color:#776d8a;">
+        <div class="third Third">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      if(window.innerWidth < 720){
+        $('.First').removeClass('First');
+        $('.Third').removeClass('Third');
+      }
+    });
+  </script>
+</body>
+
+</html>
