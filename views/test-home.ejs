@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Abdus Samee">
+  <title>HOME</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/home-styles.css">
+</head>
+
+<body class="cent">
+  <div>
+    <% if(logged){ %>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Stack Overflow</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/logout">Logout</a>
+      </li>
+    </ul>
+    <% }else{ %>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Stack Overflow</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/login">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/register">Register</a>
+      </li>
+    </ul>
+    <% } %>
+  </div>
+
+  <div class="">
+    <div class="row">
+      <div class="col-sm-12 col-md" style="background-color:#776d8a;">
+        <div class="change1 Top" style="margin-top:10vh;">
+          <h3 class="display-4">Stack</h3>
+          <h3 class="display-4">Overflow</h3>
+          <h5 class="display-5" style="margin-top:20%;">Have a question?</h5>
+          <a class="btn btn-primary" style="margin-bottom:5%;" href="/ask">Ask Here</a>
+          <form style="margin:25% 0;" action="/search" method="post">
+            <input type="text" name="findQuestion" placeholder="Search for a question">
+            <input type="submit" name="" value="Search">
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" style="min-height:100vh;margin:0;background-color:#eeeeee;">
+        <div class="headline" style="margin-top:10vh;">
+          <h4 class="display-4">Top Questions</h4>
+        </div>
+        <hr>
+        <% postList.forEach(function(post){ %>
+        <form class="cent" action="/post" method="post">
+          <h5 class="display-5" ><input style="background-color:#eeeeee;" type="submit" name="" value="<%= post.title %>"> <span style="margin-left:20px;"><small><%= post.answers.length %> answers</small></span></h5>
+          <% post.tags.forEach(function(tag){ %>
+            <small style="margin-left:5px;"><%= tag %></small>
+          <% }); %>
+          <input type="hidden" name="id" value="<%= post._id %>">
+        </form>
+        <hr>
+        <% }); %>
+      </div>
+      <div class="col-sm-12 col-md" style="background-color:#776d8a;">
+        <div class="change2 Bottom" style="margin-top:10vh;">
+          <img height="300" width="300" src="image/programming.jpg" alt="unsplash programming">
+          <h6 class="display-6 mt-4">Ask a programming question</h6>
+          <h6 class="display-6 mt-4">Answer any question logically</h6>
+          <h6 class="display-6 mt-4">Help to build a strong community</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      if(window.innerWidth < 720){
+        $('.change1').removeClass('Top');
+        $('.change2').removeClass('Bottom');
+      }
+    });
+  </script>
+</body>
+
+</html>
