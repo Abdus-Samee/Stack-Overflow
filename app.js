@@ -26,7 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb+srv://Abdus:21@cluster0.r2uaj.mongodb.net/stackDB', {useNewUrlParser : true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect('mongodb+srv://**.mongodb.net/stackDB', {useNewUrlParser : true, useUnifiedTopology: true, useFindAndModify: false });
 // mongoose.connect('mongodb://localhost:27017/stackDB', {useNewUrlParser : true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 
@@ -141,22 +141,23 @@ app.route('/logout')
 
 app.route('/post')
     .post(function(req, res){
-      const title = req.body.title;
-      let changedTitle = title.split(" ").join("-");
-      res.redirect('/posts/' + changedTitle);
+      let id = req.body.id;
+      // let changedTitle = title.split(" ").join("-");
+      res.redirect('/posts/' + id);
     });
 
-app.route('/posts/:postTitle')
+app.route('/posts/:postId')
   .get(function(req, res){
-    const postTitle = req.params.postTitle;
-    let changedTitle = postTitle.split("-").join(" ");
+    const postId = req.params.postId;
+    const changedId = postId;
+    // let changedTitle = postTitle.split("-").join(" ");
 
-    Post.findOne({title: changedTitle}, function(err, foundPost){
+    Post.findOne({_id: changedId}, function(err, foundPost){
       if(!err){
         if(!foundPost){
           res.redirect('/home');
         }else{
-          Post.findOne({title: changedTitle}, function(err, foundAns){
+          Post.findOne({_id: changedId}, function(err, foundAns){
             if(!err){
               if(req.isAuthenticated()) res.render('test-post', {title: foundPost.title, body: foundPost.body, ansList: foundAns.answers, tagList: foundPost.tags, logged: true});
               else res.render('test-post', {title: foundPost.title, body: foundPost.body, ansList: foundAns.answers, tagList: foundPost.tags, logged: false});
@@ -167,6 +168,7 @@ app.route('/posts/:postTitle')
           });
         }
       }else{
+        res.redirect('/home');
         console.log(err);
       }
     });
@@ -183,7 +185,10 @@ app.route('/posts/:postTitle')
     });
     answer.save();
 
+    let id;
+
     Post.findOne({title: ansTitle}, function(err, foundPost){
+      id = foundPost._id;
       foundPost.answers.push(answer);
       foundPost.save();
     });
@@ -200,8 +205,8 @@ app.route('/posts/:postTitle')
       foundUser.save();
     });
 
-    let changedTitle = ansTitle.split(" ").join("-");
-    res.redirect('/posts/' + changedTitle);
+    // let changedTitle = ansTitle.split(" ").join("-");
+    res.redirect('/posts/' + id);
   });
 
 app.route('/ask')
@@ -276,6 +281,26 @@ app.route('/profile')
     const user = req.user;
     res.render('profile', {name: user.username, postList: user.postList, answerList: user.answerList})
   });
+
+app.route('/profileans')
+   .post(function(req, res){
+     let ansTitle = req.body.ansTitle;
+     console.log(ansTitle);
+
+     let id;
+
+     // Answer.findOne({_id: o_id}, function(err, foundAns){
+     //   if(!err) ansTitle = foundAns.title;
+     //   else res.redirect('/profile');
+     // });
+
+     Post.findOne({title: ansTitle}, function(err, foundPost){
+       if(!err){
+         if(foundPost) res.render('test-post', {title: foundPost.title, body: foundPost.body, ansList: foundPost.answers, tagList: foundPost.tags, logged: true});
+       }
+       else res.redirect('/profile');
+     });
+   });
 
 app.listen(process.env.PORT || 3000, function(){
   console.log('Server started on port 3000 ...');
