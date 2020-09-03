@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Abdus Samee">
+  <title>Stack Overflow - User</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body style="background-color:#8675a9;">
+  <div>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Stack Overflow</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="profile" style="text-align:center;background-color:#fce2ce;min-height:100vh;">
+    <h1 class="display-3" style="padding-top:5vh;">Name : <span><h4 class="display-4" style="display:inline;"><%= name %></h4></span></h1>
+    <hr>
+    <h3 class="display-3">Questions</h3>
+    <% postList.forEach(function(post){ %>
+    <div>
+      <a class="btn btn-outline-success" href="/posts/<%=post._id%>"><%= post.title %></a>
+    </div>
+    <% }); %>
+    <hr>
+    <div class="">
+      <h3 class="display-3">Answers</h3>
+      <% answerList.forEach(function(ans){ %>
+      <form class="" action="/profileans" method="post">
+        <input type="hidden" name="ansTitle" value="<%=ans.title%>">
+        <a onclick="this.parentNode.submit();" class="btn btn-outline-dark"><%= ans.title %></a>
+      </form>
+      <% }); %>
+    </div>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      if(window.innerWidth < 720){
+        $('.profile').removeClass('profile');
+      }
+    });
+  </script>
+</body>
+
+</html>
