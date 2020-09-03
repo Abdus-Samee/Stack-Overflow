@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Abdus Samee">
+  <title>Stack Overflow - Search</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/posts/post.css">
+</head>
+
+<body class="cent">
+  <div>
+    <% if(logged){ %>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/logout">Logout</a>
+      </li>
+    </ul>
+    <% }else{ %>
+    <ul class="nav navbar-expand-lg justify-content-end navbar-dark bg-dark fixed-top">
+      <li class="nav-item">
+        <a class="nav-link active text-light" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/login">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/register">Register</a>
+      </li>
+    </ul>
+    <% } %>
+  </div>
+
+  <div class="">
+    <div class="row">
+      <div class="col-sm-12 col-md" style="background-color:#776d8a;">
+        <div class="first First" style="margin-top:10vh;">
+          <h3 class="display-4">Stack</h3>
+          <h3 class="display-4">Overflow</h3>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6" style="min-height:100vh;background-color:#eeeeee;">
+        <h1 class="display-1" style="margin-top:10vh;">Related Posts</h1>
+        <hr>
+        <% searchPosts.forEach(function(post){ %>
+        <div>
+          <a class="btn btn-outline-success mb-1" href="/posts/<%=post._id%>"><%= post.title %></a>
+        </div>
+        <% }); %>
+      </div>
+      <div class="col-sm-12 col-md" style="background-color:#776d8a;">
+        <div class="third Third">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      if(window.innerWidth < 720){
+        $('.First').removeClass('First');
+        $('.Third').removeClass('Third');
+      }
+    });
+  </script>
+</body>
+
+</html>
