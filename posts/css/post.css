@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.grid-cont{
+  display: grid;
+  grid-template-columns: 25% auto 25%;
+  grid-template-rows: 8% auto;
+}
+
+.item1{
+  grid-column: 1/4;
+  grid-row: 1/2;
+}
+
+.item2{
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.content{
+  padding: 30px;
+  border-style: solid;
+}
+
+.answer{
+  padding-top: 30px;
+}
+
+.newAns{
+  border-style: groove;
+  margin-top: 5px;
+  white-space: pre-line;
+}
+
+.author{
+  border-style: groove;
+}
+
+.First{
+  height: 100vh;
+  position: fixed;
+  left: 2%;
+}
+
+.Third{
+  height: 100vh;
+  position: fixed;
+  right: 3%;
+}
